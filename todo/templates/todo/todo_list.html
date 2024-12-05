@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+</head>
+<body>
+    <h1>To-Do List</h1>
+
+    <!-- Display list of tasks -->
+    <ul>
+        {% for task in tasks %}
+            <li>
+                {{ task.title }} (Created on: {{ task.timestamp }})
+                <!-- Link to Update task -->
+                <a href="{% url 'todo_update' task.pk %}">Edit</a> |
+                <!-- Link to Delete task -->
+                <a href="{% url 'todo_delete' task.pk %}">Delete</a>
+            </li>
+        {% empty %}
+            <li>No tasks yet!</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Link to Create a new task -->
+    <a href="{% url 'todo_create' %}">Create a new task</a>
+</body>
+</html>
